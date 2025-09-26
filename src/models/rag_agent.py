@@ -30,7 +30,7 @@ class RAGAgent:
         
         self.knowledge_base = PDFKnowledgeBase(
             name=settings.KNOWLEDGE_BASE_NAME,
-            path=f"{settings.PDF_PATH}/2022-merged.pdf",
+            path="2022-merged.pdf",
             vector_db=self.vector_db,
             dimension=settings.VECTOR_DIMENSION,
             reader=PDFReader(chunk=True),
@@ -62,7 +62,7 @@ class RAGAgent:
             memory=self.memory,
             exponential_backoff=True,
             retries=3,
-            debug=True            
+            # debug=True            
         )
         return self.agent
     
