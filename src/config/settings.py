@@ -1,12 +1,16 @@
 import os
 from dotenv import load_dotenv
-import streamlit as st
 
 load_dotenv()
 
 class Settings:
-    OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
-    PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
+    try:
+        import streamlit as st
+        OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+        PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
+    except:
+        OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+        PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 
     # Database settings
     CHROMA_PATH = "tmp/chroma"
